@@ -1,5 +1,3 @@
-package Exercise1_Lists;
-
 public class ListNode<T> {
     private ListNode<T> next;
     private T item;

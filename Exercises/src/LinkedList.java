@@ -1,12 +1,16 @@
-package Exercise1_Lists;
-
-public class LinkedList<T> implements ListADT<T>{
+public class LinkedList<T> implements Cursor<T>, ListADT<T> {
     private ListNode<T> head;
     private int numEl;
+    // Cursor position
+    private ListNode<T> position;
+    //Cursor previous position
+    private ListNode<T> prevPosition;
 
     public LinkedList(){
         head = null;
         numEl = 0;
+        position = null;
+        prevPosition = null;
     }
 
     public boolean isEmpty(){
@@ -39,6 +43,70 @@ public class LinkedList<T> implements ListADT<T>{
         return head.getItem();
     }
 
+
+    @Override
+    public boolean itemExists() {
+        return position != null;
+    }
+
+    @Override
+    public T item() {
+        if (!itemExists()) {throw new RuntimeException("No element at position");}
+        else return position.getItem();
+    }
+
+    @Override
+    public void goFirst() {
+        if (this.isEmpty()){
+            throw new RuntimeException("Error: goFirst cannot move the cursor to the first element of an empty list");
+        }
+        this.prevPosition = null;
+        this.position = head;
+    }
+
+    @Override
+    public void goForth() {
+        if (this.after()) throw new RuntimeException("Error: Cannot goForth. Cursor is at after end.");
+        if (this.before()) {
+            goFirst();
+        }
+        else{
+            this.prevPosition = this.position;
+            this.position = this.position.getNextNode();
+        }
+    }
+
+    @Override
+    public void goLast() {
+        if (isEmpty()) throw new RuntimeException("Error: Cannot goLast on empty list");
+        while(position.getNextNode()!=null){
+            goForth();
+        }
+    }
+
+    @Override
+    public void goBefore() {
+        prevPosition = null;
+        position = null;
+    }
+
+    @Override
+    public void goAfter() {
+        goLast();
+        prevPosition = position;
+        position = null;
+    }
+
+    @Override
+    public boolean before() {
+        return position == null && prevPosition==null && !isEmpty();
+    }
+
+    @Override
+    public boolean after() {
+        return position == null && prevPosition != null && !isEmpty();
+    }
+
     public static void main(String[] args) {
         //Test instance
         LinkedList<Double> l = new LinkedList<>();
@@ -67,5 +135,20 @@ public class LinkedList<T> implements ListADT<T>{
         catch (Exception e){
             System.out.println("Error: exception thrown when using insert first");
         }
+
+        /**
+         * Test cursor functionality
+         */
+        l = new LinkedList<Double>();
+        for (int i = 0; i < 5; i++) {
+            l.insertFirst(Math.random());
+        }
+        l.goFirst();
+        System.out.print("The numbers in the list are: ");
+        while (l.itemExists()){
+            System.out.print( l.item().toString()+" ");
+            l.goForth();
+        }
     }
+
 }

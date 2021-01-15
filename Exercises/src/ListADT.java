@@ -1,5 +1,3 @@
-package Exercise1_Lists;
-
 public interface ListADT<T> {
     void insertFirst(T item);
     void deleteFirst();

@@ -1,5 +1,3 @@
-package Exercise1_Lists;
-
 public class ArrayedList<T> implements ListADT<T> {
 
     int listTail;
