@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CMPT280.iml" filepath="$PROJECT_DIR$/CMPT280.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs1/lib280-asn1/lib280-asn1.iml" filepath="$PROJECT_DIR$/libs1/lib280-asn1/lib280-asn1.iml" />
     </modules>
   </component>
 </project>
