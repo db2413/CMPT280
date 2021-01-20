@@ -70,6 +70,7 @@ public class Ship {
             }
             i.goForth();
         }
+        return sackCount;
     }
 
     // Accessor methods ...

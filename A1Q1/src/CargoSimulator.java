@@ -1,3 +1,4 @@
+import lib280.list.LinkedIterator280;
 import lib280.list.LinkedList280;
 import java.util.Random;
 
@@ -72,10 +73,20 @@ public class CargoSimulator {
         // Create a new cargo simulator object.
         CargoSimulator sim = new CargoSimulator(1000);
 
-        // TODO: Print out how many sacks of barley each ship is carrying.
+        LinkedIterator280<Ship> i = sim.fleet.iterator();
+        while (i.itemExists()){
+            System.out.println("The ship: " + i.item().getName() + " has "
+                    + i.item().sacksOfGrainType(Grain.BARLEY) + " sacks of barley");
+            i.goForth();
+        }
 
-        // TODO: Print out a message for each ship that is overloaded.
-
+        i.goFirst();
+        while (i.itemExists()){
+            if(i.item().isOverloaded()){
+                System.out.println("The " + i.item().getName() + " is overloaded!");
+            }
+            i.goForth();
+        }
    }
 
 }
