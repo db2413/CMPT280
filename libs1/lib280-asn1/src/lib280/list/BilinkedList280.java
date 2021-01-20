@@ -1,6 +1,7 @@
 package lib280.list;
 
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import lib280.base.BilinearIterator280;
 import lib280.base.CursorPosition280;
 import lib280.base.Pair280;
@@ -32,11 +33,7 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 	 */
 	protected BilinkedNode280<I> createNewNode(I item)
 	{
-		// TODO
-
-
-		return null;  // This line is present only to prevent a compile error.  You should remove it before
-		// completing this method.
+		return new BilinkedNode280<I>(item);
 	}
 
 	/**
@@ -45,8 +42,11 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 	 */
 	public void insertFirst(I x) 
 	{
-		// TODO
-
+		BilinkedNode280<I> newNode = createNewNode(x);
+		BilinkedNode280<I> prevNode = (BilinkedNode280<I>) this.head;
+		prevNode.setPreviousNode(newNode);
+		newNode.setNextNode(prevNode);
+		this.head = newNode;
 	}
 
 	/**
@@ -125,8 +125,20 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 	 */
 	public void insertLast(I x) 
 	{
-		// TODO
+		BilinkedNode280<I> newNode = createNewNode(x);
+		newNode.setNextNode(null);
+		this.tail = newNode;
 
+		if (!isEmpty() && this.after()){
+			prevPosition = newNode;
+		}
+		if (isEmpty()){
+			this.head = newNode;
+		}
+		else{
+			newNode.setPreviousNode((BilinkedNode280<I>)this.tail);
+			tail.setNextNode(newNode);
+		}
 	}
 
 	/**
