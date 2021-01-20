@@ -1,3 +1,4 @@
+import lib280.list.LinkedIterator280;
 import lib280.list.LinkedList280;
 
 public class Ship {
@@ -44,9 +45,13 @@ public class Ship {
      *         false otherwise.
      */
     public boolean isOverloaded() {
-        // TODO: Implement this method.
-
-        return false; // remove this line -- this is a temporary placeholder to avoid a compiler error.
+        float cargoWeight = 0;
+        LinkedIterator280<Sack> i = this.cargo.iterator();
+        while (i.itemExists()){
+            cargoWeight += i.item().weight;
+            i.goForth();
+        }
+        return cargoWeight > this.capacity;
     }
 
     /**
@@ -57,9 +62,14 @@ public class Ship {
      * @return The number of sacks of grain on this ship with a grain type equal to 'type'.
      */
     public int sacksOfGrainType(Grain type) {
-        // TODO: Implement this method.
-
-        return 0; // remove this line -- this is a temporary placeholder to avoid a compiler error.
+        int sackCount = 0;
+        LinkedIterator280<Sack> i = this.cargo.iterator();
+        while (i.itemExists()){
+            if (i.item().getType() == type){
+                sackCount++;
+            }
+            i.goForth();
+        }
     }
 
     // Accessor methods ...
