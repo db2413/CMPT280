@@ -37,6 +37,10 @@ public class BilinkedIterator280<I> extends LinkedIterator280<I> implements Bili
 	 */
 	public void  goLast() throws ContainerEmpty280Exception
 	{
+		if (list.isEmpty())
+			throw new ContainerEmpty280Exception("Iterator Error: List is empty. Cannot goLast");
+		cur = list.tail;
+		prev = ((BilinkedNode280<I>)cur).previousNode;
 		// TODO
 
 	}
@@ -47,6 +51,14 @@ public class BilinkedIterator280<I> extends LinkedIterator280<I> implements Bili
 	 */
 	public void goBack() throws BeforeTheStart280Exception
 	{
+		if (before())
+			throw new BeforeTheStart280Exception("Iterator Error: Cursor cannot move back from the before position");
+		if (cur == list.head){
+			goBefore();
+			return;
+		}
+		cur = prev;
+		prev = ((BilinkedNode280<I>)prev).previousNode;
 		// TODO
 
 	 }

@@ -34,6 +34,7 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 	protected BilinkedNode280<I> createNewNode(I item)
 	{
 		return new BilinkedNode280<I>(item);
+		//TODO
 	}
 
 	/**
@@ -43,10 +44,19 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 	public void insertFirst(I x) 
 	{
 		BilinkedNode280<I> newNode = createNewNode(x);
-		BilinkedNode280<I> prevNode = (BilinkedNode280<I>) this.head;
-		prevNode.setPreviousNode(newNode);
-		newNode.setNextNode(prevNode);
+		if(!isEmpty()){
+			BilinkedNode280<I> prevNode = (BilinkedNode280<I>) this.head;
+			prevNode.setPreviousNode(newNode);
+			newNode.setNextNode(prevNode);
+			if (position == head){
+				prevPosition = newNode;
+			}
+		}
+		else{
+			this.tail = newNode;
+		}
 		this.head = newNode;
+		//TODO
 	}
 
 	/**
@@ -104,7 +114,7 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 			insertFirst(x); 
 		else if (this.position==lastNode())
 			insertLast(x); 
-		else if (after()) // if after then have to deal with previous node  
+		else if (after()) // if after then have to deal with previous node
 		{
 			insertLast(x); 
 			this.position = this.prevPosition.nextNode();
@@ -117,6 +127,7 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 			((BilinkedNode280<I>) this.position.nextNode()).setPreviousNode(temp);
 			this.position.setNextNode(temp);
 		}
+
 	}
 
 	/**
@@ -127,18 +138,19 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 	{
 		BilinkedNode280<I> newNode = createNewNode(x);
 		newNode.setNextNode(null);
-		this.tail = newNode;
 
 		if (!isEmpty() && this.after()){
-			prevPosition = newNode;
+			this.prevPosition = newNode;
 		}
 		if (isEmpty()){
-			this.head = newNode;
+			head = newNode;
 		}
 		else{
 			newNode.setPreviousNode((BilinkedNode280<I>)this.tail);
 			tail.setNextNode(newNode);
 		}
+		this.tail = newNode;
+		//TODO
 	}
 
 	/**
@@ -147,8 +159,23 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 	 */
 	public void deleteItem() throws NoCurrentItem280Exception
 	{
-		// TODO
-
+		if (!itemExists())
+			throw new NoCurrentItem280Exception("No item at cursor to delete");
+		if (position == head){
+			deleteFirst();
+			position = head;
+		}
+		else if (position == tail){
+			deleteLast();
+			position = tail;
+		}
+		else {
+			BilinkedNode280<I> next = (BilinkedNode280<I>)position.nextNode();
+			BilinkedNode280<I> prev = (BilinkedNode280<I>)prevPosition;
+			next.setPreviousNode(prev);
+			prev.setNextNode(next);
+		}
+		//TODO
 	}
 
 	
@@ -215,8 +242,21 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 	 */
 	public void deleteFirst() throws ContainerEmpty280Exception
 	{
-		// TODO
-
+		if (isEmpty())
+			throw new ContainerEmpty280Exception("Cannot delete from empty container");
+		BilinkedNode280<I> nextNode = (BilinkedNode280<I>) head.nextNode();
+		if (position == head) {
+			position = nextNode;
+		}
+		if (nextNode != null){
+			nextNode.setPreviousNode(null);
+			head = nextNode;
+		}
+		else{
+			head = null;
+			tail = null;
+		}
+		//TODO
 	}
 
 	/**
@@ -225,8 +265,27 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 	 */
 	public void deleteLast() throws ContainerEmpty280Exception
 	{
-		// TODO
-
+		// Empty list
+		if (isEmpty())
+			throw new ContainerEmpty280Exception("Error: Cannot delete last on empty container");
+		// Only 1 item in list so reset the list to empty
+		if (tail == head){
+			head = null;
+			tail = null;
+			position = null;
+			prevPosition = null;
+			return;
+		}
+		// At least 2 items
+		BilinkedNode280<I> newLast = ((BilinkedNode280<I>)tail).previousNode;
+		// Update cursor if it is on last node. Move it to previous node
+		if (position == tail){
+			position = newLast;
+			prevPosition = newLast.previousNode;
+		}
+		tail = newLast;
+		tail.setNextNode(null);
+		//TODO
 	}
 
 	
@@ -236,6 +295,10 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 	 */
 	public void goLast() throws ContainerEmpty280Exception
 	{
+		if (isEmpty())
+			throw new ContainerEmpty280Exception("Cannot goLast() on empty container");
+		position = tail;
+		prevPosition = ((BilinkedNode280<I>)tail).previousNode;
 		// TODO
 
 	}
@@ -246,6 +309,14 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 	 */
 	public void goBack() throws BeforeTheStart280Exception
 	{
+		if (before())
+			throw new BeforeTheStart280Exception("Error: Cursor cannot move back from the before position");
+		if (prevPosition == null){
+			position = null;
+			return;
+		}
+		position = prevPosition;
+		prevPosition = ((BilinkedNode280<I>)prevPosition).previousNode;
 		// TODO
 
 	}
@@ -291,6 +362,199 @@ public class BilinkedList280<I> extends LinkedList280<I> implements BilinearIter
 
 	/* Regression test. */
 	public static void main(String[] args) {
-		// TODO
+		BilinkedList280<Integer> l = new BilinkedList280<>();
+
+		// insertFirst() testing
+		l.insertFirst(7);
+		if (l.isEmpty())
+			System.out.println("Error 1: List should not be empty");
+		if (l.firstItem() != 7)
+			System.out.println("Error 2: Expected 7, got : " + l.firstItem());
+		// List state: [7]
+		l.insertFirst(6);
+		if (l.isEmpty())
+			System.out.println("Error 3: List should be empty");
+		if (l.firstItem() != 6)
+			System.out.println("Error 4: Expected 6, got : " + l.firstItem());
+
+		// Test prev cursor position if position is at first element. Also test insertFirst again
+		l.goFirst();
+		l.insertFirst(5);
+		if (l.firstItem() != 5)
+			System.out.println("Error 5: Expected 5, got : " + l.firstItem());
+		if (l.prevPosition.item() != 5)
+			System.out.println("Error 6: Prev position. Expected 6, got : " + l.prevPosition.item());
+		//Test references of populated list
+		l.goFirst();
+		l.goForth();
+		if (l.item() != 6)
+			System.out.println("Error 7: Expected 6, got: " + l.item());
+		l.goForth();
+		if (l.item() != 7)
+			System.out.println("Error 8: Expected 7, got: " + l.item());
+
+
+		//	 insertLast() Testing
+		// On an empty list
+		l = new BilinkedList280<Integer>();
+		l.insertLast(2);
+		if (l.firstItem()!=2)
+			System.out.println("Error 8.1: Expected 2, got: " + l.firstItem());
+		// On a list with one element
+		l.insertLast(3);
+		if (l.lastItem()!=3)
+			System.out.println("Error 9: Expected 3, got: " + l.lastItem());
+		if (l.tail.item()!=3)
+			System.out.println("Error 10: Expected a tail of 3, got: " + l.tail.item());
+		if (l.head.item()!=2)
+			System.out.println("Error 11: Expected a head of 2, got: " + l.head.item());
+		// On a list with 2 elements
+		l.insertLast(4);
+		if (l.lastItem()!=4)
+			System.out.println("Error 12: Expected 4, got: " + l.lastItem());
+		if (l.tail.item()!=4)
+			System.out.println("Error 13: Expected a tail of 4, got: " + l.tail.item());
+		// On a list with multiple elements
+		l.insertLast(99);
+		if (l.lastItem()!=99)
+			System.out.println("Error 14: Expected 99, got: " + l.lastItem());
+
+		// 	deleteItem() testing
+		// Test deleting from a cursor position with null element. In this case empty list
+		l = new BilinkedList280<>();
+		// On an empty list
+		try{
+			l.deleteItem();
+			System.out.println("Error 15: Can't call delete() on an empty list");
+		}
+		catch (NoCurrentItem280Exception e){
+			// Expect this exception throws
+		}
+		// Insert element to empty list, move cursor there, delete element. Expect empty list
+		l.insert(2);
+		l.goFirst();
+		l.deleteItem();
+		if (!l.isEmpty())
+			System.out.println("Error 16: Expected and empty list. List is not empty");
+		// Add 3 elements, delete one and check against expected list. make sure cursor is still at first
+		l.insert(3);
+		l.insert(2);
+		l.insert(1);
+		l.goFirst();
+		l.deleteItem();
+		if (!l.toString().equals("2, 3, "))
+			System.out.println("Error 17: Expected a list with elements: 2, 3, list but got: "+l.toString());
+		if (l.position.item != 2)
+			System.out.println("Error 17.1: Expected cursor to be at 2, list but got: "+l.item());
+		// Delete middle element of list
+		l.insert(1);
+		l.deleteItem();
+		if (!l.toString().equals("1, 3, "))
+			System.out.println("Error 17.2: Expected a list with elements: 1, 3, list but got: "+l.toString());
+		// Delete from end of list, make sure tail is updated
+		l = new BilinkedList280<Integer>();
+		l.insert(3);
+		l.insert(2);
+		l.insert(1);
+		l.goFirst();
+		l.goForth();
+		l.goForth();
+		l.deleteItem();
+		if (!l.toString().equals("1, 2, "))
+			System.out.println("Error 17.3: Expected a list with elements: 1, 2, list but got: "+l.toString());
+		if (l.tail.item != 2 || l.item() != 2)
+			System.out.println("Error 17.4: Expected a tail of: 2 but got: "+l.toString());
+
+		// deleteLast() testing
+		l.insertLast(4);
+		// Multiple element list: 1,2,3 list
+		l.deleteLast();
+		if (!l.toString().equals("1, 2, "))
+			System.out.println("Error 18.1: Expected a list with elements: 1, 2, list but got: "+l.toString());
+		if (l.tail.item != 2 || l.item() != 2)
+			System.out.println("Error 18.2: Expected a tail of: 2 but got: "+l.tail.item);
+		// 2 element list: 1,2
+		l.deleteLast();
+		if (!l.toString().equals("1, "))
+			System.out.println("Error 18.3: Expected a list with elements: 1, list but got: "+l.toString());
+		if (l.tail.item != 1 || l.item() != 1)
+			System.out.println("Error 18.4: Expected a tail of: 1 but got: "+l.tail.item);
+		// 2 element list: 1,2
+		l.deleteLast();
+		if (!l.isEmpty())
+			System.out.println("Error 18.5: Expected an empty list but got: "+l.toString());
+		if (l.tail != null)
+			System.out.println("Error 18.6: Expected a tail of: null but got: "+l.tail.item);
+
+		// golast() testing
+		// empty list goLast()
+		try{
+			l.goLast();
+			System.out.println("Error 19.1: Should have thrown an container empty exception for goLast() on empty list");
+		}
+		catch (Container280Exception e){
+			//do nothing. Wanted to test the exceptions being thrown
+		}
+		// goLast on single element list
+		l.insert(1);
+		l.goLast();
+		if (l.tail.item != 1)
+			System.out.println("Error 19.2: Expected a tail of 1, but got: " + l.tail.item);
+		// goLast on two element list
+		l.insertLast(2);
+		l.goLast();
+		if (l.tail.item != 2)
+			System.out.println("Error 19.3: Expected a tail of 2, but got: " + l.tail.item);
+		// goLast on three element list
+		l.insertLast(3);
+		l.goLast();
+		if (l.tail.item != 3)
+			System.out.println("Error 19.3: Expected a tail of 3, but got: " + l.tail.item);
+
+		// goBack() testing
+		l = new BilinkedList280<Integer>();
+		// goBack on 3 element list
+		l.insert(1);
+		l.insert(2);
+		l.insert(3);
+		l.goLast();
+		l.goBack();
+		if (l.position.item != 2)
+			System.out.println("Error 20.1: Expected a cursor position with item: 2, but got: " + l.position.item);
+		// goBack while cursor is on first position
+		l.goFirst();
+		l.goBack();
+		if (!l.before())
+			System.out.println("Error 20.2: Cursor is not at before position");
+		try{
+			l.goBack();
+			System.out.println("Error 20.2: Should have thrown an container empty exception for goBack() on empty list");
+		}
+		catch (BeforeTheStart280Exception e){
+			//do nothing. Wanted to test the exceptions being thrown
+		}
+
+		//Bilinked Iterator unit testing for goBack
+		// Empty list
+		l = new BilinkedList280<>();
+		BilinkedIterator280<Integer> ita = l.iterator();
+		l.goBack();
+		l.goForth();
+		l.goLast();
+		l.goBack();
+		// Single element list
+		l = new BilinkedList280<>();
+		l.insert(1);
+		// two element list
+		l = new BilinkedList280<>();
+		l.insert(1);
+		l.insert(2);
+		// Multiple element list
+		l = new BilinkedList280<>();
+		l.insert(1);
+		l.insert(2);
+		l.insert(3);
+		l.insert(3);
+
 	}
 } 
