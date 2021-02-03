@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/A1Q1/A1Q1.iml" filepath="$PROJECT_DIR$/A1Q1/A1Q1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Assignment1/Assignment1.iml" filepath="$PROJECT_DIR$/Assignment1/Assignment1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Assignment3/Assignment3.iml" filepath="$PROJECT_DIR$/Assignment3/Assignment3.iml" />
       <module fileurl="file://$PROJECT_DIR$/CMPT280.iml" filepath="$PROJECT_DIR$/CMPT280.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Exercises/Exercises.iml" filepath="$PROJECT_DIR$/Exercises/Exercises.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libs1/lib280-asn1/lib280-asn1.iml" filepath="$PROJECT_DIR$/libs1/lib280-asn1/lib280-asn1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exercise_08/Exercise_08.iml" filepath="$PROJECT_DIR$/Exercise_08/Exercise_08.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exercise_1/Exercise_1.iml" filepath="$PROJECT_DIR$/Exercise_1/Exercise_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IOExercises/IOExercises.iml" filepath="$PROJECT_DIR$/IOExercises/IOExercises.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/5_School Resources/CMPT280/lib280-asn1/lib280-asn1.iml" filepath="$USER_HOME$/Documents/5_School Resources/CMPT280/lib280-asn1/lib280-asn1.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/5_School Resources/CMPT280/lib280-asn3/lib280-asn3.iml" filepath="$USER_HOME$/Documents/5_School Resources/CMPT280/lib280-asn3/lib280-asn3.iml" />
     </modules>
   </component>
 </project>

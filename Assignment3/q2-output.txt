@@ -1,0 +1,34 @@
+1: Militia Beginner, Cost: 1
+     2: Offensive Path, Cost: 1
+          3: Critical Expert, Cost: 2
+               4: Pin Point Anguish, Cost: 4
+               4: Bleeding Gashes, Cost: 4
+               4: - 
+               4: - 
+          3: Dual Wielding, Cost: 3
+          3: Giant Weapon Wielding, Cost: 3
+          3: - 
+          3: - 
+     2: Defensive Path, Cost: 1
+          3: Evasion Expert, Cost: 3
+               4: Uncanny Evasion, Cost: 4
+               4: Giant Slayer, Cost: 3
+               4: - 
+               4: - 
+          3: Armored Advocate, Cost: 2
+          3: Serious Shield Skills , Cost: 2
+
+Dependencies for Militia Beginner:
+Militia Beginner, Cost: 1, 
+Dependencies for Critical Expert:
+Militia Beginner, Cost: 1, Offensive Path, Cost: 1, Critical Expert, Cost: 2, 
+Dependencies for Uncanny Evasion:
+Militia Beginner, Cost: 1, Defensive Path, Cost: 1, Evasion Expert, Cost: 3, Uncanny Evasion, Cost: 4, 
+Dependencies for Giantssssssssss Slayer:
+Giantssssssssss Slayer not found.
+To get Militia Beginner you must invest 1 points.
+To get Critical Expert you must invest 4 points.
+To get Bleeding Gashes you must invest 8 points.
+Fake Skill, is not in the skill tree
+
+Process finished with exit code 0
