@@ -1,3 +1,7 @@
+//  Duncan Boyes
+//  ID 11084342
+//  CMPT 280 Assignment 3
+
 import lib280.list.LinkedIterator280;
 import lib280.list.LinkedList280;
 import lib280.tree.BasicMAryTree280;
@@ -118,40 +122,63 @@ public class SkillTree extends BasicMAryTree280<Skill> {
 		critcalTree.setRootSubtree(bleedingSkill,2);
 
 		System.out.println(st.toStringByLevel());
-		// Test skillDependencies() at root
+		// Regression Test skillDependencies() at root
 		LinkedList280<Skill> skillSearch00 = st.skillDependencies("Militia Beginner");
-		System.out.println("\nDependencies for Militia Beginner:\n" + skillSearch00.toString());
-		// Test skillDependencies() at children
+		if (!skillSearch00.toString().equals("Militia Beginner, Cost: 1, ")){
+			System.out.println("Error in skillDependencies(). Expected: Militia Beginner, Cost: 1,  but got" + skillSearch00.toString());
+		}
+		// Regression Test skillDependencies() at children
 		LinkedList280<Skill> skillSearch01 = st.skillDependencies("Critical Expert");
-		System.out.println("Dependencies for Critical Expert:\n" + skillSearch01.toString());
 		LinkedList280<Skill> skillSearch02 = st.skillDependencies("Uncanny Evasion");
-		System.out.println("Dependencies for Uncanny Evasion:\n" +skillSearch02.toString());
-		// Test skillDependencies() at non existant skill
-		System.out.println("Dependencies for Giantssssssssss Slayer:");
+		if (!skillSearch02.toString().equals("Militia Beginner, Cost: 1, Defensive Path, Cost: 1, Evasion Expert, Cost: 3, Uncanny Evasion, Cost: 4, ")){
+			System.out.println("Error in skillDependencies(). Expected: Militia Beginner, Cost: 1, Defensive Path, Cost: 1, Evasion Expert, Cost: 3, Uncanny Evasion, Cost: 4, ,  but got" + skillSearch02.toString());
+		}
+		// Regression Test skillDependencies() at non existent skill
 		try{
 			LinkedList280<Skill> skillSearch03 = st.skillDependencies("Giantssssssssss Slayer");
 			System.out.println("Error: Expected a thrown exception to occur");
 		}
 		catch (RuntimeException e){
-			System.out.println("Giantssssssssss Slayer not found.");
 			// Expected a thrown exception
 		}
 
-		// Test root skillTotalCost()
+		// Regression Test root skillTotalCost()
 		if (st.skillTotalCost("Militia Beginner") != 1){
 			System.out.println("Error: Militia Beginner path should cost 1, instead of: " + st.skillTotalCost("Militia Beginner"));
 		}
-		// Test root children  skillTotalCost()
+		// Regression Test root children  skillTotalCost()
 		if (st.skillTotalCost("Critical Expert") != 4){
 			System.out.println("Error: Critical expert path should cost 4, instead of: " + st.skillTotalCost("Critical Expert"));
 		}
 		if (st.skillTotalCost("Bleeding Gashes") != 8){
 			System.out.println("Error: Bleeding Gashes path should cost 4, instead of: " + st.skillTotalCost("Bleeding Gashes"));
 		}
+		// Regression Test fake skill skillTotalCost()
+		try{
+			st.skillTotalCost("Fake Skill");
+			System.out.println("Error skillTotalCost(): Expected to throw an exception and did not");
+		}
+		catch (RuntimeException e){
+			// Passed test
+		}
+
+		System.out.println("\nDependencies for Militia Beginner:\n" + skillSearch00.toString());
+		System.out.println("Dependencies for Critical Expert:\n" + skillSearch01.toString());
+		System.out.println("Dependencies for Uncanny Evasion:\n" +skillSearch02.toString());
+		System.out.println("Dependencies for Giantssssssssss Slayer:");
+		try{
+			LinkedList280<Skill> skillSearch03 = st.skillDependencies("Giantssssssssss Slayer");
+		}
+		catch (RuntimeException e){
+			System.out.println("Giantssssssssss Slayer not found.");
+			// Expected a thrown exception
+		}
 
 		System.out.println("To get Militia Beginner you must invest " + st.skillTotalCost("Militia Beginner") + " points.");
 		System.out.println("To get Critical Expert you must invest " + st.skillTotalCost("Critical Expert") + " points.");
 		System.out.println("To get Bleeding Gashes you must invest " + st.skillTotalCost("Bleeding Gashes") + " points.");
+		System.out.println("To get Uncanny Evasion you must invest " + st.skillTotalCost("Uncanny Evasion") + " points.");
+
 		try{
 			st.skillTotalCost("Fake Skill");
 		}
