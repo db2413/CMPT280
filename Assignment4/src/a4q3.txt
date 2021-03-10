@@ -1,0 +1,180 @@
+Duncan Boyes 11084342 dhb021
+
+AVL tree implementation testing.
+Test LL imbalance on small tree. 
+Empty tree insert 20. Result: 
+1: 20
+Insert 4. Result: 
+     2: -
+1: 20
+     2: 4
+Insert 1. Causes right rotation. Result: 
+     2: 20
+1: 4
+     2: 1
+Test LR imbalance on small tree. 
+
+New tree. Insert 20. Result: 
+1: 20
+Insert 4. Result: 
+     2: -
+1: 20
+     2: 4
+Insert 15. Causes LR Imbalance. Result: 
+     2: 20
+1: 15
+     2: 4
+
+Test RR imbalance on small tree. 
+New tree. Insert 20. Result: 
+1: 20
+Insert 40. Result: 
+     2: 40
+1: 20
+     2: -
+Insert 80. Causes RR Imbalance. Result: 
+     2: 80
+1: 40
+     2: 20
+
+Test RL imbalance on small tree. 
+New tree. Insert 20. Result: 
+1: 20
+Insert 40. Result: 
+     2: 40
+1: 20
+     2: -
+Insert 30. Causes RL imbalance. Result: 
+     2: 40
+1: 30
+     2: 20
+
+Test LR imbalance on larger tree. New tree 
+Insert: 20,4,26,21,30,3,9,2,7,11. Result: 
+          3: 30
+     2: 26
+          3: 21
+1: 20
+               4: 11
+          3: 9
+               4: 7
+     2: 4
+               4: -
+          3: 3
+               4: 2
+Insert 15. This insertion should be the first imbalance. Result: 
+               4: 30
+          3: 26
+               4: 21
+     2: 20
+               4: 15
+          3: 11
+               4: -
+1: 9
+          3: 7
+     2: 4
+               4: -
+          3: 3
+               4: 2
+
+Testing delete(). Test tree: 
+          3: 5
+     2: 4
+          3: 3
+1: 2
+     2: 1
+Delete 3. Result 
+          3: 5
+     2: 4
+          3: -
+1: 2
+     2: 1
+Delete 4. Result 
+     2: 5
+1: 2
+     2: 1
+Delete 5. Result 
+     2: -
+1: 2
+     2: 1
+Delete 2. Result 
+1: 1
+Delete 1. Result 
+1: -
+
+Test delete on larger tree. Test tree initial state: 
+                    5: 44
+               4: 12
+                    5: -
+          3: 10
+               4: 9
+     2: 8
+               4: -
+          3: 7
+               4: 6
+1: 5
+               4: 4
+          3: 3
+               4: -
+     2: 2
+          3: 1
+
+Delete 1. Causes a RR imbalance at 2, which then causes an RR imbalance at 5. Result: 
+               4: 44
+          3: 12
+               4: -
+     2: 10
+          3: 9
+1: 8
+               4: -
+          3: 7
+               4: 6
+     2: 5
+               4: 4
+          3: 3
+               4: 2
+
+Delete 3. Simple deletion with no imbalance. Result: 
+               4: 44
+          3: 12
+               4: -
+     2: 10
+          3: 9
+1: 8
+               4: -
+          3: 7
+               4: 6
+     2: 5
+               4: -
+          3: 4
+               4: 2
+
+Delete 44,9,2,12. Causes a LL imbalance at 8. Result: 
+          3: 10
+     2: 8
+          3: -
+1: 7
+          3: 6
+     2: 5
+          3: 4
+
+Test String AVL tree.
+
+Insert "Hello","World". Result: 
+     2: World
+1: Hello
+     2: -
+
+Insert "Universe". Causes RL imbalance. Result: 
+     2: World
+1: Universe
+     2: Hello
+
+Delete "Hello","Universe","World". Result: 
+1: -
+
+Insert "!!!!Good bye!!!!". Result: 
+1: !!!!Good bye!!!!
+Regression test completed (Ya there are a bunch of other tests running silent)
+
+Process finished with exit code 0

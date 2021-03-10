@@ -4,12 +4,18 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Assignment1/Assignment1.iml" filepath="$PROJECT_DIR$/Assignment1/Assignment1.iml" />
       <module fileurl="file://$PROJECT_DIR$/Assignment3/Assignment3.iml" filepath="$PROJECT_DIR$/Assignment3/Assignment3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Assignment4/Assignment4.iml" filepath="$PROJECT_DIR$/Assignment4/Assignment4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Assignment5/Assignment5.iml" filepath="$PROJECT_DIR$/Assignment5/Assignment5.iml" />
       <module fileurl="file://$PROJECT_DIR$/CMPT280.iml" filepath="$PROJECT_DIR$/CMPT280.iml" />
       <module fileurl="file://$PROJECT_DIR$/Exercise_08/Exercise_08.iml" filepath="$PROJECT_DIR$/Exercise_08/Exercise_08.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Exercise_1/Exercise_1.iml" filepath="$PROJECT_DIR$/Exercise_1/Exercise_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exercise_09/Exercise_09.iml" filepath="$PROJECT_DIR$/Exercise_09/Exercise_09.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exercise_10/Exercise_10.iml" filepath="$PROJECT_DIR$/Exercise_10/Exercise_10.iml" />
       <module fileurl="file://$PROJECT_DIR$/IOExercises/IOExercises.iml" filepath="$PROJECT_DIR$/IOExercises/IOExercises.iml" />
-      <module fileurl="file://$USER_HOME$/Documents/5_School Resources/CMPT280/lib280-asn1/lib280-asn1.iml" filepath="$USER_HOME$/Documents/5_School Resources/CMPT280/lib280-asn1/lib280-asn1.iml" />
-      <module fileurl="file://$USER_HOME$/Documents/5_School Resources/CMPT280/lib280-asn3/lib280-asn3.iml" filepath="$USER_HOME$/Documents/5_School Resources/CMPT280/lib280-asn3/lib280-asn3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QuestLog-Template/QuestLog-Template.iml" filepath="$PROJECT_DIR$/QuestLog-Template/QuestLog-Template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../5_School Resources/CMPT280/lib280-asn1/lib280-asn1.iml" filepath="$PROJECT_DIR$/../5_School Resources/CMPT280/lib280-asn1/lib280-asn1.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/lib280-asn3/lib280-asn3.iml" filepath="$USER_HOME$/Desktop/lib280-asn3/lib280-asn3.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/asn4-StarterCode/lib280-asn4/lib280-asn4.iml" filepath="$USER_HOME$/Desktop/asn4-StarterCode/lib280-asn4/lib280-asn4.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/lib280-asn5/lib280-asn5.iml" filepath="$USER_HOME$/Desktop/lib280-asn5/lib280-asn5.iml" />
     </modules>
   </component>
 </project>
