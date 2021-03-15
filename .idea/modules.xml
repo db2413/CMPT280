@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/Assignment3/Assignment3.iml" filepath="$PROJECT_DIR$/Assignment3/Assignment3.iml" />
       <module fileurl="file://$PROJECT_DIR$/Assignment4/Assignment4.iml" filepath="$PROJECT_DIR$/Assignment4/Assignment4.iml" />
       <module fileurl="file://$PROJECT_DIR$/Assignment5/Assignment5.iml" filepath="$PROJECT_DIR$/Assignment5/Assignment5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Assignment6/Assignment6.iml" filepath="$PROJECT_DIR$/Assignment6/Assignment6.iml" />
       <module fileurl="file://$PROJECT_DIR$/CMPT280.iml" filepath="$PROJECT_DIR$/CMPT280.iml" />
       <module fileurl="file://$PROJECT_DIR$/Exercise_08/Exercise_08.iml" filepath="$PROJECT_DIR$/Exercise_08/Exercise_08.iml" />
       <module fileurl="file://$PROJECT_DIR$/Exercise_09/Exercise_09.iml" filepath="$PROJECT_DIR$/Exercise_09/Exercise_09.iml" />
@@ -16,6 +17,7 @@
       <module fileurl="file://$USER_HOME$/Desktop/lib280-asn3/lib280-asn3.iml" filepath="$USER_HOME$/Desktop/lib280-asn3/lib280-asn3.iml" />
       <module fileurl="file://$USER_HOME$/Desktop/asn4-StarterCode/lib280-asn4/lib280-asn4.iml" filepath="$USER_HOME$/Desktop/asn4-StarterCode/lib280-asn4/lib280-asn4.iml" />
       <module fileurl="file://$USER_HOME$/Desktop/lib280-asn5/lib280-asn5.iml" filepath="$USER_HOME$/Desktop/lib280-asn5/lib280-asn5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib280-asn6/lib280-asn6.iml" filepath="$PROJECT_DIR$/lib280-asn6/lib280-asn6.iml" />
     </modules>
   </component>
 </project>
